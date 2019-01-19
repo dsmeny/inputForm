@@ -1,13 +1,14 @@
 "use strict";
+//force of habit
 const $q = selector => document.querySelector(selector);
 
 let inputField = $q(".container__tel");
 let e;
 
-//create a keypress listener
+//create a keypress event listener
 inputField.addEventListener("keypress", targetElement);
 
-//listener callback
+//callback listener
 function targetElement(e) {
   let val = e.target;
   if (e.keyCode === 13) {
@@ -23,12 +24,13 @@ function init(val) {
   reloadPage();
 }
 
+//capture user input value
 function captureValues(fieldInput) {
-  //capture input value and store it
   let inputValues = fieldInput.value;
   return inputValues;
 }
 
+//callback function for formatFieldNumber
 function fieldValidator(numValue) {
   //validate a number is entered
   if (isNaN(numValue) || numValue === " " || numValue === "")
@@ -42,15 +44,15 @@ function fieldValidator(numValue) {
   }
 }
 
-//format number field
+//format input tel number (xxx)xxx-xxxx
 function formatFieldNumber(validField) {
   let numVal = fieldValidator(validField),
     result = numVal.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
   return result;
 }
 
-//create an output element and display form number
-//replace label message with achknowledgement
+//An achnowledgment for the UI.
+//set input field to read-only
 function output(strVal) {
   var domElem = $q(".container__display__message");
   const HTML = `<h2>You're phone number is ${strVal}</h2>`;
@@ -62,7 +64,7 @@ function output(strVal) {
   return domElem.insertAdjacentHTML("beforeend", HTML);
 }
 
-//create refresh button and display in UI
+//a refresh button and display in UI
 function createRefreshButton() {
   const container = $q(".container__display__message");
   const btn = document.createElement("BUTTON");
@@ -71,6 +73,7 @@ function createRefreshButton() {
   container.appendChild(btn);
 }
 
+//page referesher
 function reloadPage() {
   createRefreshButton();
   const btn = $q("button");
