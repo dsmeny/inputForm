@@ -51,7 +51,7 @@ function formatFieldNumber(validField) {
   return result;
 }
 
-//An achnowledgment for the UI.
+//An acknowledgment for the UI.
 //set input field to read-only
 function output(strVal) {
   var domElem = $q(".container__display__message");
